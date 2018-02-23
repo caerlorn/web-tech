@@ -1,0 +1,25 @@
+<html>
+<head>
+    <style>
+        ul.breadcrumb li {
+            display: inline;
+            font-size: 18px;
+        }
+
+        ul.breadcrumb li+li::before {
+            padding: 8px;
+            color: black;
+            content: "/\00a0";
+        }
+    </style>
+</head>
+<body>
+<h2>Breadcrumb</h2>
+<ul class="breadcrumb">
+    <li><a href="#">Home</a></li>
+    <li><a href="#">Courses</a></li>
+    <li><a href="#">ICD0007</a></li>
+    <li>CSS 2</li>
+</ul>
+</body>
+</html>
