@@ -319,26 +319,26 @@ http://www.templatemo.com/tm-476-conquer
         	updateHash: true
         });
 
-        $('.navbar').hover(function(){     //task1. Used different methods just because. Also the navbar itself turns
-			$(this).toggleClass('navbar-hover'); //white too in chrome but not in firefox
-			$('.single-page-nav a').css({
-				"background-color": "white",
-				"color": "black"
-			})
-		},function () {
-			$(this).toggleClass('navbar-hover');
-			$('.single-page-nav a').css({
-				"background-color": "#333",
-				"color": "#fff"
-			})
-        });
-
         $('.navbar-toggle').click(function(){
         	$('.single-page-nav').toggleClass('show');
         });
 
         $('.single-page-nav a').click(function(){
         	$('.single-page-nav').removeClass('show');
+        });
+
+        $('.navbar').hover(function(){     //task1. Used different methods just because. Also the navbar itself turns
+            $(this).toggleClass('navbar-hover'); //white too in chrome but not in firefox
+            $('.single-page-nav a').css({
+                "background-color": "white",
+                "color": "black"
+            })
+        },function () {
+            $(this).toggleClass('navbar-hover');
+            $('.single-page-nav a').css({
+                "background-color": "#333",
+                "color": "#fff"
+            })
         });
 
         $('#send-btn').click(function () { //task2 and task3
