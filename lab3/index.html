@@ -66,9 +66,9 @@ http://www.templatemo.com/tm-476-conquer
 					<div class="col-sm-4">
 						<div class="feature-content">
 							<img src="img/1-2.jpg" alt="Image">
-							<h2 class="feature-content-title blue-text">Responsive Design</h2>
-							<p class="feature-content-description">Conquer Template is provided by templatemo for free of charge. You can use this template for any kind of website. No credit link is required. All images by <a href="http://unsplash.com" target="_parent">Unsplash</a>. Thank you for visiting our website. Please come again!</p>                    
-							<a href="#" class="feature-content-link blue-btn">See Details</a>
+							<h2 class="feature-content-title blue-text" id="dyna1">Responsive Design</h2>
+							<p class="feature-content-description" id="dyna2">Conquer Template is provided by templatemo for free of charge. You can use this template for any kind of website. No credit link is required. All images by <a href="http://unsplash.com" target="_parent">Unsplash</a>. Thank you for visiting our website. Please come again!</p>
+							<a class="feature-content-link blue-btn" id="dyna3">See Details</a>
 						</div>
 					</div>
 					<div class="col-sm-4">
@@ -267,7 +267,15 @@ http://www.templatemo.com/tm-476-conquer
 
 
     // HTML document is loaded. DOM is ready.
-    $(function() {  
+    $(function() {
+
+        //Another method for task 5
+        $('#dyna1').text("Task 5");
+        $('#dyna2').text("My github link for task 5");
+        $('#dyna3').text("My github");
+        $('#dyna3').attr("href", "https://github.com/caerlorn");
+        $('#dyna3').attr("target", "_blank");
+
 
     // Parallax
         $('.intro-section').parallax({
@@ -352,15 +360,26 @@ http://www.templatemo.com/tm-476-conquer
             });
 
             if (empCheck == true){
-                alert(errStr); }
-             else{
+                alert(errStr);
+            } else{
                 alert('Name: ' + $('#name').val() + ' Mail: ' + $('#mail').val() +
-                      ' Subject: ' + $('#subject').val() + ' Comment: ' + $('#comment').val());}
+                      ' Subject: ' + $('#subject').val() + ' Comment: ' + $('#comment').val());
+            }
         });
 
         $('#grn-btn').click(function () { //Task 4
             $(this).css("background-color", "orange");
             $(this).text("Task 4");
+        });
+
+        $('#dyna3').hover(function(){ //Another dynamic method for Task 5 just for changing the button div
+            $(this).text("My github");
+            $(this).attr("href", "https://github.com/caerlorn");
+            $(this).attr("target", "_blank");
+        },function () {
+            $(this).text("See Details");
+            $(this).attr("href", "#");
+            $(this).removeAttr('target');
         });
     });
 
