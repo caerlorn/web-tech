@@ -344,7 +344,7 @@ http://www.templatemo.com/tm-476-conquer
         $('#send-btn').click(function () { //task2 and task3
             var empCheck = false;
             var errStr = "Missing Fields: ";
-            $('input[class="form-control"]').each(function() {
+            $('#contactf-id input, #contactf-id textarea').each(function() {
                 if ($.trim($(this).val()) == '') {
                     empCheck = true;
                     errStr = errStr + ' ' + $(this).attr('id');
