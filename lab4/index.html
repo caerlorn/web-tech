@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Currency Converter</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+            crossorigin="anonymous">
+    </script>
+    <style>
+        #box {
+            width: 300px;
+            height: 150px;
+            margin: 200px auto;
+            border: 1px solid black;
+        }
+        #box h2{
+            text-align: center;
+        }
+        #box table{
+            margin: 0px auto;
+        }
+        #box select{
+            height: 21px;
+        }
+        input[type=text]{
+            height: 15px;
+        }
+        input[type=submit]{
+            margin-left: 70%;
+            margin-top: 4px;
+        }
+    </style>
+</head>
+<body>
+<div id="box">
+    <h2>LAB 4</h2>
+    <table>
+        <tr>
+            <td><input type=text id="currAmount" size="9" value="1" /></td>
+            <td>
+                <select id="currFrom">
+                    <option value="EUR" selected>Euro</option>
+                    <option value="USD">US Dollar</option>
+                    <option value="GBP">Pound Sterling</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td><input type=text id="currAmountTo" size="9" disabled/></td>
+            <td>
+                <select id="currTo">
+                    <option value="EUR" selected>Euro</option>
+                    <option value="USD" selected>US Dollar</option>
+                    <option value="GBP">Pound Sterling</option>
+                </select>
+            </td>
+        </tr>
+        <tr><td><input type="submit" value="Convert" id="theButton"></td></tr>
+    </table>
+</div>
+<script>
+
+</script>
+</body>
+</html>
