@@ -9,8 +9,8 @@
     </script>
     <style>
         #box {
-            width: 300px;
-            height: 150px;
+            width: 400px;
+            height: 180px;
             margin: 200px auto;
             border: 1px solid black;
         }
@@ -22,13 +22,16 @@
         }
         #box select{
             height: 21px;
+            text-align: center;
+            text-align-last:center;
         }
-        input[type=text]{
+        #box input[type=text]{
             height: 15px;
+            text-align: center;
         }
-        input[type=submit]{
-            margin-left: 70%;
-            margin-top: 4px;
+        #box input[type=button]{
+            margin-left: 140%;
+            margin-top: 15%;
         }
     </style>
 </head>
@@ -45,9 +48,6 @@
                     <option value="GBP">Pound Sterling</option>
                 </select>
             </td>
-        </tr>
-        <tr>
-            <td><input type=text id="currAmountTo" size="9" disabled/></td>
             <td>
                 <select id="currTo">
                     <option value="EUR" selected>Euro</option>
@@ -56,11 +56,55 @@
                 </select>
             </td>
         </tr>
-        <tr><td><input type="submit" value="Convert" id="theButton"></td></tr>
+        <tr><td><input type="button" value="Convert" id="theButton"></td></tr>
+        <tr><td><input type=text id="currAmountTo" size="9" disabled style="margin-top: 10%; margin-left: 125%"/></td></tr>
     </table>
 </div>
 <script>
 
+    var endpoint = 'latest';
+    var access_key= '5ecea3509a9a67b8ad5d0aa83391ab31';
+
+    $( document ).ready(function() {
+
+        $('#currAmount').on('keypress keyup blur',function (event) {
+            $(this).val($(this).val().replace(/[^0-9.]/g,''));
+            if ((event.which !== 46 || $(this).val().indexOf('.') !== -1) && (event.which < 48 || event.which > 57)) {
+                event.preventDefault();
+            }
+        });
+
+        $('#theButton').click(function () {
+            if ($.trim($('#currAmount').val()) === '') {
+                alert('Please enter an amount!');
+            } else if($.trim($('#currAmount').val()) === '0') {
+                $('#currAmountTo').val('0');
+                $('#currAmountTo').removeAttr('disabled');
+            } else {
+                /*alert('suc');
+                console.log($('#currFrom').find(':selected').val());
+                console.log($('#currTo').find(':selected').val());*/
+                $.ajax({
+                    url: 'http://data.fixer.io/api/' + endpoint + '?access_key=' + access_key + '&symbols='
+                          + $('#currFrom').find(':selected').val() + ','
+                          + $('#currTo').find(':selected').val(),
+                    dataType: 'jsonp',
+                    success: function(json) {
+                        // exchange rata data is stored in json.rates
+                        alert(json.rates.GBP);
+
+                        // base currency is stored in json.base
+                        alert(json.base);
+
+                        // timestamp can be accessed in json.timestamp
+                        alert(json.timestamp);
+
+                    }
+                });
+            }
+        });
+
+    });
 </script>
 </body>
 </html>
