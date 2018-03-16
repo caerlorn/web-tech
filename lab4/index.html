@@ -91,10 +91,12 @@
                     /*url: 'http://data.fixer.io/api/' + endpoint + '?access_key=' + access_key + '&symbols='
                           + currencyFrom + ',' + currencyTo,*/
                     /*Not being able to change the base currency with our free api key has forced me to take a more
-                    direct approach for now as seen below. I mean it is really counter-intuitive to get all the rates
+                    direct approach for now as seen below. (I mean it is really counter-intuitive to get all the rates
                     of the required three currencies against EUR, calculate cross rates manually and store them in
                     variables, check what currencies are selected in the options and write several if else ifs with
-                    respect to them to change the calculation is unnecessarily complex.*/
+                    respect to them to change the calculation is unnecessarily complex.) -> This point was for the 3a
+                    and 3b requirements and how I was thinking of doing it around the api limitations. With the below
+                    url structure all of the requirements work fine. */
                     url: 'https://api.fixer.io/' + endpoint + '?base=' + currencyFrom + '&symbols=' + currencyTo,
                     dataType: 'jsonp',
                     success: function(json) {
