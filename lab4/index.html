@@ -62,8 +62,8 @@
 </div>
 <script>
 
-    var endpoint = 'latest';
-    var access_key= '5ecea3509a9a67b8ad5d0aa83391ab31';
+    const endpoint = 'latest';
+    const access_key= '5ecea3509a9a67b8ad5d0aa83391ab31';
 
     $( document ).ready(function() {
 
@@ -75,35 +75,43 @@
         });
 
         $('#theButton').click(function () {
-            if ($.trim($('#currAmount').val()) === '') {
+            var amount = $.trim($('#currAmount').val()); //trim isn't really necessary due to the regex input validation but you never know
+            var currencyFrom = $('#currFrom').find(':selected').val();
+            var currencyTo = $('#currTo').find(':selected').val();
+            var rates = [];
+            var i = 0;
+            var calc = 0;
+            if (amount === '') {
                 alert('Please enter an amount!');
-            } else if($.trim($('#currAmount').val()) === '0') {
-                $('#currAmountTo').val('0');
+            } else if(amount === '0') {
+                $('#currAmountTo').val(calc);
                 $('#currAmountTo').removeAttr('disabled');
             } else {
-                /*alert('suc');
-                console.log($('#currFrom').find(':selected').val());
-                console.log($('#currTo').find(':selected').val());*/
                 $.ajax({
-                    url: 'http://data.fixer.io/api/' + endpoint + '?access_key=' + access_key + '&symbols='
-                          + $('#currFrom').find(':selected').val() + ','
-                          + $('#currTo').find(':selected').val(),
+                    /*url: 'http://data.fixer.io/api/' + endpoint + '?access_key=' + access_key + '&symbols='
+                          + currencyFrom + ',' + currencyTo,*/
+                    /*Not being able to change the base currency with our free api key has forced me to take a more
+                    direct approach for now as seen below. I mean it is really counter-intuitive to get all the rates
+                    of the required three currencies against EUR, calculate cross rates manually and store them in
+                    variables, check what currencies are selected in the options and write several if else ifs with
+                    respect to them to change the calculation is unnecessarily complex.*/
+                    url: 'https://api.fixer.io/' + endpoint + '?base=' + currencyFrom + '&symbols=' + currencyTo,
                     dataType: 'jsonp',
                     success: function(json) {
-                        // exchange rata data is stored in json.rates
-                        alert(json.rates.GBP);
-
-                        // base currency is stored in json.base
-                        alert(json.base);
-
-                        // timestamp can be accessed in json.timestamp
-                        alert(json.timestamp);
-
+                        i = 0;   //making sure array starts from 0 even if the ajax is constrained to the .click action
+                        $.each(json.rates , function(k , rate){
+                            rates[i] = rate;
+                            i++;
+                            //console.log(k + ': ' + rate);
+                        });
+                        //console.log(rates[0] + ', ' + rates[1]);
+                        calc = amount * rates[0];
+                        $('#currAmountTo').val(calc);
+                        $('#currAmountTo').removeAttr('disabled');
                     }
                 });
             }
         });
-
     });
 </script>
 </body>
