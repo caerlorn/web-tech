@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-require_once("databaseConnection.php");
+require_once("DatabaseConnection.php");
 
 unset($_SESSION['success_message']);
 unset($_SESSION['error_message']);
@@ -28,7 +28,7 @@ function login() {
         // no user matching the email
         if (empty($result)) {
             $_SESSION['error_message'] = 'Invalid email / password!';
-            header('Location: ../login.php');
+            header('Location: /project15/login.php');
             return;
         }
 
@@ -39,7 +39,7 @@ function login() {
             $_SESSION['isLoggedIn'] = true;
             $_SESSION['userID'] = $userData['id'];
             $_SESSION['success_message'] = 'User successfully';
-            header('Location: ../profile.php');
+            header('Location: /project15/profile.php');
 
             return;
         }
@@ -48,7 +48,7 @@ function login() {
     }
 
     $_SESSION['error_message'] = 'Invalid email / password!';
-    header('Location: ../login.php');
+    header('Location: /project15/login.php');
 }
 
 login();

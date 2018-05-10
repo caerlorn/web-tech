@@ -1,5 +1,7 @@
 <?php
-require_once("databaseConnection.php");
+require_once("DatabaseConnection.php");
+require_once ("mailSender.php");
+
 function register() {
     $postedData = $_POST['data'];
 
@@ -40,6 +42,11 @@ function register() {
 
         if ($pdo->lastInsertId()) {
             echo "Registration successful";
+            sendMail(
+                "Registration was successful",
+                "Hello {$firstname}, Welcome to Project 15",
+                $email
+            );
             return;
         }
 
