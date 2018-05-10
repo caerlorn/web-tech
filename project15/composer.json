@@ -1,0 +1,9 @@
+{
+  "name": "web-tech/project15",
+  "description": "Project 15",
+  "type": "project",
+  "require": {
+    "phpmailer/phpmailer": "6.0"
+  },
+  "license": "MIT"
+}
